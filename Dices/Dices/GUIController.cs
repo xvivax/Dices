@@ -6,47 +6,52 @@ namespace Dices
     public class GUIController
     {
         private MenuWindow menuWindow;
-        public bool needToRender = true;
-        private CreditWindow creditWindow;
         private GameController gameController;
-
+        private DiceSelectionWindow diceSelectionWindow;
         private PlayerSelectionWindow playerSelectionWindow;
 
-        private bool displayCredits = false;
+        private bool needToRender = true;
+        private int playersInGame = 0;
+        private int diceValue = 0;
+
+
+        public int State { get; set; } = 0;
+
 
         public GUIController()
         {
             menuWindow = new MenuWindow();
-            creditWindow = new CreditWindow();
             gameController = new GameController();
+            diceSelectionWindow = new DiceSelectionWindow();
+            playerSelectionWindow = new PlayerSelectionWindow();
         }
 
-        public void ShowMenu()
+        public void StartWindows()
         {
             do
             {
-                menuWindow.Render();
-
-                ConsoleKeyInfo consoleKey = Console.ReadKey(true);
-
-                switch (consoleKey.Key)
+                switch (State)
                 {
-                    case ConsoleKey.P:
-                        //menuWindow.PreviousButton();
-                        playerSelectionWindow = new PlayerSelectionWindow();
-                        playerSelectionWindow.ShowPlayerSelectionWindow();
-                        break;
-                    case ConsoleKey.Q:
-                        //menuWindow.NextButton();
+                    case -1:
                         needToRender = false;
                         break;
+                    case 0:
+                        State = menuWindow.ShowMenu(State);
+                        break;
+                    case 1:
+                        State = playerSelectionWindow.ShowPlayerSelection(State);
+                        playersInGame = playerSelectionWindow.GetPlayersNumber();
+                        break;
+                    case 2:
+                        State = diceSelectionWindow.ShowDiceWindow(State);
+                        diceValue = diceSelectionWindow.GetDiceNumber();
+                        break;
+                    case 3:
+                        gameController.StartGame(playersInGame, diceValue);
+                        break;
                 }
-            } while (needToRender);
-        }
 
-        public int PlayersSelected()
-        {
-            return playerSelectionWindow.GetPlayersNumber();
+            } while (needToRender);
         }
     }
 }

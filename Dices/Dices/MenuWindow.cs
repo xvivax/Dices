@@ -18,7 +18,7 @@ namespace Dices
             explanationTextBlock = new TextBlock(10, 15, 100, new List<string>() { "Press P to start the game", "Press Q to quit app" });
         }
 
-        public void Render()
+        private void Render()
         {
             base.Render();
 
@@ -27,6 +27,24 @@ namespace Dices
             explanationTextBlock.Render();
 
             Console.SetCursorPosition(0,0);
+        }
+
+        public int ShowMenu(int state)
+        {
+            Render();
+            ConsoleKeyInfo consoleKey = Console.ReadKey(true);
+
+            switch (consoleKey.Key)
+            {
+                case ConsoleKey.P:
+                    state = 1;
+                    break;
+                case ConsoleKey.Q:
+                    state = -1;
+                    break;
+            }
+
+            return state;
         }
 
         /*

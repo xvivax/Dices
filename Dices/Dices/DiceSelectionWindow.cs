@@ -18,7 +18,7 @@ namespace Dices
             diceInfo = new TextBlock(10, 11, 100, new List<string>() { "\n", "Press +/- to add or reduce dice number", "Press Enter to continue" });
         }
 
-        public void ShowDiceWindow()
+        public int ShowDiceWindow(int state)
         {
             do
             {
@@ -33,6 +33,7 @@ namespace Dices
                     switch (consoleKey.Key)
                     {
                         case ConsoleKey.Escape:
+                            state = 1;
                             needToRender = false;
                             break;
                         case ConsoleKey.Subtract:
@@ -47,8 +48,8 @@ namespace Dices
                             diceNumber++;
                             break;
                         case ConsoleKey.Enter:
-                            gameController = new GameController();
-                            gameController.StartGame();
+                            state = 3;
+                            needToRender = false;
                             break;
                     }
                 }
@@ -56,6 +57,8 @@ namespace Dices
                 Console.SetCursorPosition(0, 0);
                 System.Threading.Thread.Sleep(400);
             } while (needToRender);
+
+            return state;
         }
 
         public void DisplayDiceInfo()

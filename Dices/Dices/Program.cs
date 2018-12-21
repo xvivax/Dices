@@ -7,7 +7,7 @@ namespace Dices
             //Let's beggin
 
             GUIController game = new GUIController();
-            game.ShowMenu();
+            game.StartWindows();
         }
     }
 }

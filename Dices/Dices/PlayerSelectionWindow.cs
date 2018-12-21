@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Net.Http.Headers;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.Remoting.Messaging;
@@ -11,7 +12,7 @@ namespace Dices
     {
         private bool needToRender = true;
         private const int TOTAL_ROWS = 3;
-        private const int TOTAL_COLS = 3;
+        private const int TOTAL_COLS = 2;
         private Button[][] playersButtons = new Button[TOTAL_ROWS][];
         private DiceSelectionWindow diceSelectionWindow;
 
@@ -35,7 +36,7 @@ namespace Dices
             playersButtons[0][0].SetActive();
         }
 
-        public void ShowPlayerSelectionWindow()
+        public int ShowPlayerSelection(int state)
         {
             do
             {
@@ -51,6 +52,7 @@ namespace Dices
                     switch (consoleKey.Key)
                     {
                         case ConsoleKey.Escape:
+                            state = 0;
                             needToRender = false;
                             break;
                         case ConsoleKey.RightArrow:
@@ -86,8 +88,8 @@ namespace Dices
                             }
                             break;
                         case ConsoleKey.Enter:
-                            diceSelectionWindow = new DiceSelectionWindow();
-                            diceSelectionWindow.ShowDiceWindow();
+                            state = 2;
+                            needToRender = false;
                             break;
                         default:
                             Console.WriteLine("You pressed something different");
@@ -98,6 +100,8 @@ namespace Dices
                 Console.SetCursorPosition(0, 0);
                 System.Threading.Thread.Sleep(400);
             } while (needToRender);
+
+            return state;
         }
 
         public void RenderTable()
@@ -117,7 +121,7 @@ namespace Dices
 
         public int GetPlayersNumber()
         {
-            return (row * TOTAL_COLS) + col + 1;
+            return (row * TOTAL_COLS) + col + 2;
         }
     }
 }
