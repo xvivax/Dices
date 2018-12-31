@@ -43,62 +43,56 @@ namespace Dices
                 Console.Clear();
                 Render();
                 RenderTable();
-
-
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo consoleKey = Console.ReadKey(true);
-
-                    switch (consoleKey.Key)
-                    {
-                        case ConsoleKey.Escape:
-                            state = 0;
-                            needToRender = false;
-                            break;
-                        case ConsoleKey.RightArrow:
-                            if (col < 1)
-                            {
-                                playersButtons[row][col].SetNotActive();
-                                col++;
-                                playersButtons[row][col].SetActive();
-                            }
-                            break;
-                        case ConsoleKey.LeftArrow:
-                            if (col > 0)
-                            {
-                                playersButtons[row][col].SetNotActive();
-                                col--;
-                                playersButtons[row][col].SetActive();
-                            }
-                            break;
-                        case ConsoleKey.UpArrow:
-                            if (row > 0)
-                            {
-                                playersButtons[row][col].SetNotActive();
-                                row--;
-                                playersButtons[row][col].SetActive();
-                            }
-                            break;
-                        case ConsoleKey.DownArrow:
-                            if (row < 2)
-                            {
-                                playersButtons[row][col].SetNotActive();
-                                row++;
-                                playersButtons[row][col].SetActive();
-                            }
-                            break;
-                        case ConsoleKey.Enter:
-                            state = 2;
-                            needToRender = false;
-                            break;
-                        default:
-                            Console.WriteLine("You pressed something different");
-                            break;
-                    }
-                }
-
                 Console.SetCursorPosition(0, 0);
-                System.Threading.Thread.Sleep(400);
+
+                ConsoleKeyInfo consoleKey = Console.ReadKey(true);
+
+                switch (consoleKey.Key)
+                {
+                    case ConsoleKey.Escape:
+                        state = 0;
+                        needToRender = false;
+                        break;
+                    case ConsoleKey.RightArrow:
+                        if (col < 1)
+                        {
+                            playersButtons[row][col].SetNotActive();
+                            col++;
+                            playersButtons[row][col].SetActive();
+                        }
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        if (col > 0)
+                        {
+                            playersButtons[row][col].SetNotActive();
+                            col--;
+                            playersButtons[row][col].SetActive();
+                        }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (row > 0)
+                        {
+                            playersButtons[row][col].SetNotActive();
+                            row--;
+                            playersButtons[row][col].SetActive();
+                        }
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if (row < 2)
+                        {
+                            playersButtons[row][col].SetNotActive();
+                            row++;
+                            playersButtons[row][col].SetActive();
+                        }
+                        break;
+                    case ConsoleKey.Enter:
+                        state = 2;
+                        needToRender = false;
+                        break;
+                    default:
+                        Console.WriteLine("You pressed something different");
+                        break;
+                }
             } while (needToRender);
 
             return state;

@@ -25,10 +25,9 @@ namespace Dices
                 Console.Clear();
                 Render();
                 DisplayDiceInfo();
+                Console.SetCursorPosition(0, 0);
 
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo consoleKey = Console.ReadKey(true);
+                ConsoleKeyInfo consoleKey = Console.ReadKey(true);
 
                     switch (consoleKey.Key)
                     {
@@ -52,10 +51,8 @@ namespace Dices
                             needToRender = false;
                             break;
                     }
-                }
 
-                Console.SetCursorPosition(0, 0);
-                System.Threading.Thread.Sleep(400);
+                
             } while (needToRender);
 
             return state;

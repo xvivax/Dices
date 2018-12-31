@@ -2,12 +2,12 @@
 
 namespace Dices
 {
-    public class CreditWindow : Window
+    public class ExtraWindow : Window
     {
         private Button backButton;
         private TextBlock creditTextBlock;
 
-        public CreditWindow(): base(28, 10, 60, 18, '@')
+        public ExtraWindow(): base(28, 10, 60, 18, '@')
         {
             List<string> creditInfo = new List<string>();
 

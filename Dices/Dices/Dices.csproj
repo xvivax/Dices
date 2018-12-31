@@ -58,13 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
-    <Compile Include="CreditWindow.cs" />
+    <Compile Include="ExtraWindow.cs" />
     <Compile Include="DiceSelectionWindow.cs" />
     <Compile Include="Frame.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="GUIController.cs" />
     <Compile Include="GuiObject.cs" />
+    <Compile Include="WinWindow.cs" />
     <Compile Include="MenuWindow.cs" />
     <Compile Include="PlayerSelectionWindow.cs" />
     <Compile Include="Program.cs" />

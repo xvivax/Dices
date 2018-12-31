@@ -24,6 +24,7 @@ namespace Dices
             }
 
             Console.Write(data);
+            Console.WriteLine();
         }
     }
 }

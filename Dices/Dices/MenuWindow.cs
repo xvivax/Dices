@@ -5,11 +5,9 @@ namespace Dices
 {
     public class MenuWindow : Window
     {
-        //private List<Button> buttons = new List<Button>();
         private TextBlock titleTextBlock;
         private TextBlock menuTextBlock;
         private TextBlock explanationTextBlock;
-        //private int buttonIndex;
 
         public MenuWindow() : base(0, 0, 120, 30, '&')
         {
@@ -46,32 +44,5 @@ namespace Dices
 
             return state;
         }
-
-        /*
-        public void NextButton()
-        {
-            if (buttonIndex < 2)
-            {
-                buttons[buttonIndex].SetNotActive();
-                buttonIndex++;
-                buttons[buttonIndex].SetActive();
-            }
-        }
-
-        public void PreviousButton()
-        {
-            if (buttonIndex > 0)
-            {
-                buttons[buttonIndex].SetNotActive();
-                buttonIndex--;
-                buttons[buttonIndex].SetActive();
-            }
-        }
-
-        public int GetButtonIndex()
-        {
-            return buttonIndex;
-        }
-        */
     }
 }
